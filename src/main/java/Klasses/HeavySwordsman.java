@@ -1,8 +1,6 @@
 package Klasses;
 
-import Skills.Attack;
-import Skills.Horizontal_Slash;
-import Skills.Reckless_Attack;
+import Skills.*;
 
 public class HeavySwordsman extends FighterClass{
 
@@ -19,16 +17,14 @@ public class HeavySwordsman extends FighterClass{
 	super.Skillname = "Full Swing";
 	super.skilltype = "active";
 	super.Skill_Discription = "A powerfull attack that increases Strength by 20% afterwards.";
-//	super.skillpower = 100;
-//	super.skillaccuracy = 50;
-//	super.Skillstatboost = "Strength";
-//	super.Skillboost = 20;
 	
 	
 	Attack Horizontal_Slash = new Horizontal_Slash();
 	Attack Reckless_Attack = new Reckless_Attack();
+	Attack Magic_Guard = new Magic_Guard();
 	
 	super.attacks.add(Horizontal_Slash);
 	super.attacks.add(Reckless_Attack);
+	super.attacks.add(Magic_Guard);
 	}
 }

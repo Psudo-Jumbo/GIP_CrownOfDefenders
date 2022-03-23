@@ -6,7 +6,11 @@ public class Fighter extends FighterClass{
 
 	public Fighter(String nickname) {
 		super.classname = "Fighter";
-		super.Skillname = "Accurate";
+		super.Skillname = "Battle born";
+		super.skilltype = "passive";
+		super.Skill_Discription = "incoming damage is decreased by 20%";
+		super.all_Defence += 0.2;
+		super.skillused = true;
 		super.Nickname = nickname;
 		super.Strength = 50;
 		super.Speed = 50;

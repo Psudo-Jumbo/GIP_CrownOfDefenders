@@ -154,13 +154,20 @@ public class FighterClass {
 		}
 		} else if(attack.getAttackType().contains("Buff")) {
 			if(attack.getStatboosttype().contains("Strength")) {
+				System.out.println(this.Nickname + " increased their strength");
 				this.Strength = this.Strength*((attack.getStatboost()/100)+1);
 			} else if (attack.getStatboosttype().contains("Speed")) {
 				this.Speed = this.Speed*((attack.getStatboost()/100)+1);
-			} else if (attack.getStatboosttype().contains("Magic")) {
-				this.Magic = this.Magic*((attack.getStatboost()/100)+1);
+				System.out.println(this.Nickname + " increased their speed");
 			} else if (attack.getStatboosttype().contains("Magic_D")) {
 				this.Magical_Defence = this.Magical_Defence*((attack.getStatboost()/100)+1);
+				System.out.println(this.Nickname + " increased their magic defence");
+			}else if (attack.getStatboosttype().contains("Magic")) {
+				this.Magic = this.Magic*((attack.getStatboost()/100)+1);
+				System.out.println(this.Nickname + " increased their magic");
+			}  else if (attack.getStatboosttype().contains("Physical_D")) {
+				this.Physical_Defence = this.Physical_Defence*((attack.getStatboost()/100)+1);
+				System.out.println(this.Nickname + " increased their Physical defence");
 			}
 			else {
 				System.out.println("-!-");
@@ -170,7 +177,7 @@ public class FighterClass {
 		}
 		
 		
-			target.PrintInfo();
+			target.PrintAll();
 			System.out.println("---");
 		}
 	}	

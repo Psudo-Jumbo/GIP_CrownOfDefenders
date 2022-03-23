@@ -36,11 +36,11 @@ public class General {
 	
 	public void playernames() {
 		System.out.println("Player 1 choose name.");
-		String player1 = scan.nextLine();
+		String player1name = scan.nextLine();
 		System.out.println("Player 2 choose name.");
-		String player2 = scan.nextLine();
+		String player2name = scan.nextLine();
 		
-		combatstart(player1, player2);
+		combat(player1name, player2name);
 	}
 	
 	public void combat(String player1, String player2) {
@@ -94,7 +94,7 @@ public class General {
 		if(players.get(player1).GetSpeed()>players.get(player2).GetSpeed()) {
 			onefirst = true;
 			System.out.println(player1 + " goes first");
-		} else if((players.get(player1).GetSpeed() == players.get(player2).GetSpeed())) {
+		} else if((players.get(player1).GetSpeed() < players.get(player2).GetSpeed())) {
 			onefirst = false;
 			System.out.println(player2 + " goes first");
 		} else {

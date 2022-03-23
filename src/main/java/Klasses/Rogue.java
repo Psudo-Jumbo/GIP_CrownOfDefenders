@@ -27,8 +27,10 @@ public class Rogue extends FighterClass{
 		
 		Attack Sword_Flurry = new Sword_Flurry();
 		Attack Backstab = new Backstab();
+		Attack Reckless_Attack = new Reckless_Attack();
 		
 		super.attacks.add(Backstab);
 		super.attacks.add(Sword_Flurry);
+		super.attacks.add(Reckless_Attack);
 	}
 }
