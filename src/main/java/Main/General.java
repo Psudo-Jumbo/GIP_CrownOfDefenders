@@ -31,7 +31,16 @@ public class General {
 		FighterClass Rogue1 = new Rogue("Rogue1");
 		classes.add(Rogue1);
 		
-		combat("Alpha", "Beta");
+		playernames();
+	}
+	
+	public void playernames() {
+		System.out.println("Player 1 choose name.");
+		String player1 = scan.nextLine();
+		System.out.println("Player 2 choose name.");
+		String player2 = scan.nextLine();
+		
+		combatstart(player1, player2);
 	}
 	
 	public void combat(String player1, String player2) {
@@ -108,6 +117,7 @@ public class General {
 		
 	}
 	
+	
 	public void combatround (String first, String second) {
 		
 		boolean turnorder = false;
@@ -115,11 +125,11 @@ public class General {
 		while(players.get(first).hp_current > 0 && players.get(second).hp_current > 0) {
 			if(turnorder == false) {
 				System.out.println(first + "'s turn");
-				attackround(first, second);
+				combatmenu(first, second);
 			}
 			else if (turnorder == true) {
 				System.out.println(second + "'s turn");
-				attackround(second, first);
+				combatmenu(second, first);
 			}
 			
 			if (turnorder == true) {
@@ -138,6 +148,48 @@ public class General {
 		}
 		}
 	
+	public void combatmenu(String first, String second) {
+		System.out.println("---");
+		System.out.println("What would you like to do " + first);
+		System.out.println("Attack");
+		System.out.println("Skill");
+		System.out.println("Info");
+		
+		String chosenaction = scan.nextLine();
+		
+		if(chosenaction.contains("Attack")) {
+			attackround(first, second);
+		}
+		else if(chosenaction.contains("Skill")) {
+			skillround(first, second);
+		}
+		else if(chosenaction.contains("Info")) {
+			players.get(first).PrintAll();
+			combatmenu(first, second);
+		}
+		
+	}
+	
+	public void skillround(String attacker, String target) {
+		
+			if (players.get(attacker).GetSkillType()=="passive") {
+				System.out.println(players.get(attacker).getSkill_Discription());
+				combatmenu(attacker, target);
+			}
+			else if (players.get(attacker).GetSkillType()=="active") {
+				if (players.get(attacker).Getskillused() == true) {
+					System.out.println("---");
+					System.out.println("Skill has already been used");
+					combatmenu(attacker, target);
+				} else if (players.get(attacker).Getskillused() == false) {
+					ArrayList<Attack> Skill = players.get(attacker).getSkill();
+					for (Attack x : Skill) {
+					players.get(attacker).useAttack(x, players.get(target));
+					}
+				}
+			}
+	}
+	
 	public void attackround(String attacker, String target) {
 		System.out.println(attacker + " What would you like to do?");  //first attacks
 		System.out.println("---");
@@ -147,6 +199,8 @@ public class General {
 		String chosenattackp1 = scan.nextLine();
 		players.get(attacker).checkattack(chosenattackp1, players.get(target));
 	}
+	
+	
 	
 	public void chooseClass(String chosenclassname, String choosingplayer) {
 		

@@ -6,7 +6,8 @@ public class Horizontal_Slash extends Attack{
 		super.name = "Horizontal Slash";
 		super.accuracy = 80;
 		super.power = 50;
-		super.Type = "Physical";
+		super.DamageType = "Physical";
+		super.AttackType = "Damage";
 		super.Effect = "On hit deal 50 physical damage.";
 	}
 }

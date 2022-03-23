@@ -1,13 +1,11 @@
 package Klasses;
 
 import java.util.ArrayList;
-
 import Skills.Attack;
 
 public class FighterClass {
 
 	String classname;
-	String Skillname;
 	String Nickname;
 	int hp_max;
 	public int hp_current;
@@ -20,8 +18,22 @@ public class FighterClass {
 	double all_Defence;
 	ArrayList<Skills.Attack> attacks = new ArrayList<Attack>();
 	
+	ArrayList<Skills.Attack> Skill = new ArrayList<Attack>();
+	
+	String Skillname;
+	String skilltype;
+	String Skill_Discription;
+	boolean skillused = false;
+	
+	
+	public ArrayList<Attack> getSkill(){
+		return Skill;
+	}
 	public ArrayList<Attack> getAttacks() {
 		return attacks;
+	}
+	public String GetSkillType() {
+		return skilltype;
 	}
 	
 	public double GetStrength() {
@@ -36,8 +48,10 @@ public class FighterClass {
 	public double GetMagic() {
 		return this.Magic;
 	}
+	public boolean Getskillused() {
+		return this.skillused;
+	}
 	
-	public void UseSkill() {}
 	public void PrintInfo() {
 		System.out.println("---");
 		System.out.println(this.Nickname);
@@ -48,6 +62,8 @@ public class FighterClass {
 		System.out.println("---");
 		System.out.println(this.Nickname);
 		System.out.println(this.classname);
+		System.out.println("Skill: " + this.Skillname);
+		System.out.println(this.Skill_Discription);
 		System.out.println("HitPoints: " + this.hp_current + " / " + this.hp_max);
 		System.out.println("Strength: " + this.Strength);
 		System.out.println("Speed: " + this.Speed);
@@ -57,6 +73,15 @@ public class FighterClass {
 	
 	public String getclassname() {
 		return this.classname;
+	}
+	
+	public String getSkillname() {
+		return Skillname;
+	}
+
+
+	public String getSkill_Discription() {
+		return Skill_Discription;
 	}
 	
 	public void checkattack(String usedattack, FighterClass target) {
@@ -78,11 +103,13 @@ public class FighterClass {
 	}
 	
 	public void useAttack(Attack attack, FighterClass target) {
+		
+	if(attack.getAttackType().contains("Damage")) {
 		int succeshits = 0;
 		System.out.println(this.Nickname + " uses " + attack.getName() + " on " + target.Nickname);
 		
 		for(int a = 0; a<attack.gethits(); a++) {
-			if(attack.getType()== "Physical") {
+			if(attack.getDamageType()== "Physical") {
 				double hit = Math.random()*100;
 				double damage = (int)(((attack.getPower()*((this.Strength*0.01)+1)))/2);
 				if ((int)hit <= attack.getCritrate()) {
@@ -100,7 +127,7 @@ public class FighterClass {
 				else {
 					System.out.println(this.Nickname + " missed!");
 				}
-				} else if(attack.getType()== "Magic") {
+				} else if(attack.getDamageType()== "Magic") {
 					double hit = Math.random()*100;
 					double damage = (int)(((attack.getPower()*((this.Magic*0.01)+1)))/2);
 					if ((int)hit <= attack.getCritrate()) {
@@ -109,7 +136,7 @@ public class FighterClass {
 					}
 					damage = (damage*(1-(target.all_Defence)+(target.Magical_Defence)));
 			
-					if (hit < attack.getAccuracy()-(target.Speed*0.1)){
+					if (hit < attack.getAccuracy()-(target.Speed*0.2)){
 						target.hp_current -= (int)damage;
 						System.out.println(target.Nickname + " has taken " + (int)damage + " damage from " + this.Nickname + "!");
 						succeshits += 1;
@@ -125,6 +152,24 @@ public class FighterClass {
 			System.out.println(this.Nickname + " hit " + succeshits + " times!");
 			System.out.println("---");
 		}
+		} else if(attack.getAttackType().contains("Buff")) {
+			if(attack.getStatboosttype().contains("Strength")) {
+				this.Strength = this.Strength*((attack.getStatboost()/100)+1);
+			} else if (attack.getStatboosttype().contains("Speed")) {
+				this.Speed = this.Speed*((attack.getStatboost()/100)+1);
+			} else if (attack.getStatboosttype().contains("Magic")) {
+				this.Magic = this.Magic*((attack.getStatboost()/100)+1);
+			} else if (attack.getStatboosttype().contains("Magic_D")) {
+				this.Magical_Defence = this.Magical_Defence*((attack.getStatboost()/100)+1);
+			}
+			else {
+				System.out.println("-!-");
+				System.out.println("Something went wrong during Stat boost");
+				System.out.println("-!-");
+			}
+		}
+		
+		
 			target.PrintInfo();
 			System.out.println("---");
 		}

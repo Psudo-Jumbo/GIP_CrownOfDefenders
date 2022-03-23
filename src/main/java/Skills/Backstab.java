@@ -7,8 +7,9 @@ public class Backstab extends Attack{
 		super.name = "Backstab";
 		super.power = 50;
 		super.accuracy = 85;
-		super.Type = "Physical";
+		super.AttackType = "Damage";
+		super.DamageType = "Physical";
 		super.Effect = "On hit deal 50 damage, has an increased chance to crit";
-		super.critrate = 25;
+		super.critrate = 30;
 	}
 }

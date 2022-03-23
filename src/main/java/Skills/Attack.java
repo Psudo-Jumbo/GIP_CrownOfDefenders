@@ -4,8 +4,11 @@ public class Attack {
 	String name;
 	int power;
 	int accuracy;
-	String Type;
+	String DamageType;
+	String AttackType;
 	String Effect;
+	String Statboosttype;
+	double Statboost;
 	int hits = 1;
 	Boolean multihit = false;
 	int critrate = 10;
@@ -19,8 +22,11 @@ public class Attack {
 	public int getAccuracy() {
 		return accuracy;
 	}
-	public String getType() {
-		return Type;
+	public String getDamageType() {
+		return DamageType;
+	}
+	public String getAttackType() {
+		return AttackType;
 	}
 	public String getEffect() {
 		return Effect;
@@ -33,5 +39,11 @@ public class Attack {
 	}
 	public boolean getMultihit() {
 		return multihit;
+	}
+	public String getStatboosttype() {
+		return Statboosttype;
+	}
+	public double getStatboost() {
+		return Statboost;
 	}
 }
