@@ -4,22 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import org.apache.tomcat.jni.File;
+
 import Klasses.*;
 import Skills.*;
 
 public class General {
 	
-	ArrayList<FighterClass> classes = new ArrayList<FighterClass>();
+	ArrayList<FighterClass> sclasses = new ArrayList<FighterClass>();
 	HashMap<String, FighterClass> players = new HashMap<String, FighterClass>();
 	Scanner scan = new Scanner(System.in);
-
-	public static void main(String[] args) {
-		General X = new General();
-		
-		X.filloutclasses();
-	}
 	
-	public void filloutclasses () {
+	String player1;
+	String player2;
+
+	
+	public ArrayList filloutclasses () {
+		ArrayList<FighterClass> classes = new ArrayList<FighterClass>();
 		FighterClass Fighter1 = new Fighter("Figter1");
 		classes.add(Fighter1);
 		FighterClass Knight1 = new Knight("Knight1");
@@ -31,19 +32,17 @@ public class General {
 		FighterClass Rogue1 = new Rogue("Rogue1");
 		classes.add(Rogue1);
 		
-		playernames();
+		return classes;
 	}
 	
-	public void playernames() {
-		System.out.println("Player 1 choose name.");
-		String player1name = scan.nextLine();
-		System.out.println("Player 2 choose name.");
-		String player2name = scan.nextLine();
+	public String playernames(String P1name, String P2name) {
 		
-		combat(player1name, player2name);
+		player1 = P1name;
+		player2 = P2name;
+		return "Player 1: " + P1name + " VS " + "Player 2: " + P2name;
 	}
 	
-	public void combat(String player1, String player2) {
+	public void engageCombat() {
 		
 		System.out.println("Combat Start");
 		
@@ -53,26 +52,6 @@ public class General {
 		
 		System.out.println("---");
 		
-		System.out.println(player1 + " choose class"); //player 1 choosing their class
-		for (FighterClass x: classes) {
-			System.out.println(x.getclassname());
-		}
-		String p1class_choice = scan.nextLine();
-		chooseClass(p1class_choice, player1); 
-		
-		System.out.println("---");
-		
-		System.out.println(player2 + " choose class"); //player 2 choosing their class
-		for (FighterClass x: classes) {
-				System.out.println(x.getclassname());
-			}
-		
-		System.out.println("---");
-		
-		String p2class_choice = scan.nextLine();
-		chooseClass(p2class_choice, player2); 
-		
-		System.out.println("---");
 		
 		 //printing player information
 		System.out.println("Player: " + player1);
@@ -86,6 +65,20 @@ public class General {
 		
 		combatstart(player1, player2);
 		
+	}
+	
+//	public void CharacterChoice1() {
+//		CharacterChoice2(player1, classes);
+//		CharacterChoice2(player2);
+//	}
+	
+	public void CharacterChoice2(String player, ArrayList<FighterClass> classes) {
+		System.out.println(player1 + " choose class"); //player 1 choosing their class
+		for (FighterClass x: classes) {
+			System.out.println(x.getclassname());
+		}
+		String p1class_choice = scan.nextLine();
+		chooseClass(p1class_choice, player1);
 	}
 	
 	public void combatstart (String player1, String player2) {
