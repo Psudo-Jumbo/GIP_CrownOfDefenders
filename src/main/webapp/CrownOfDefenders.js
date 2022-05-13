@@ -131,6 +131,10 @@ var app = new Vue({
 		
 		Attackround:function(){
 			
+			console.log('Round Started')
+			console.log("P1: " + this.PrevieuwCName1)
+			console.log("P2: " + this.PrevieuwCName2)
+			
 			if(this.PrevieuwCName1.speed > this.PrevieuwCName2){
 
 				this.UseAttack(this.PrevieuwCName1, this.PrevieuwCName2, this.LockIn1)
@@ -190,10 +194,13 @@ var app = new Vue({
 					this.Los = this.PrevieuwCName1
 					}
 				}
-				document.getElementById('actions1all').style.display = "block"
+				
 			}
+			document.getElementById('actions1all').style.display = "block"
+			document.getElementById('actions2all').style.display = "block"
 			
-			
+			console.log("P1: " + this.PrevieuwCName1)
+			console.log("P2: " + this.PrevieuwCName2)
 		},
 		
 		UseAttack:function(Attacker, Target, Attack){
