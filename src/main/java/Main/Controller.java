@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import Klasses.FighterClass;
+import Skills.Attack;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -28,5 +29,9 @@ public class Controller {
 	@GetMapping("/GetClasses")
 		public ArrayList<FighterClass> Index2() {
 		return G.filloutclasses();
+	}
+	@GetMapping("/Round")
+		public ArrayList<FighterClass> Index3(@RequestParam FighterClass Attacker, @RequestParam FighterClass Target, @RequestParam Attack attack) {
+		return G.useAttack(Attacker, Target, attack);
 	}
 }

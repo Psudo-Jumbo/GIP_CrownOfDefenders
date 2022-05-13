@@ -6,6 +6,7 @@ import Skills.*;
 public class Wizard extends FighterClass{
 
 	public Wizard(String nickname) {
+		super.id = 5;
 		super.classname = "Wizard";
 		super.Magical_Defence += 0.2;
 		super.Nickname = nickname;
@@ -23,9 +24,11 @@ public class Wizard extends FighterClass{
 		
 		Attack Fire_Bolt = new Fire_Bolt();
 		Attack Lightning_Pierce = new Lightning_Pierce();
+		Attack Mage_Armor = new Mage_Armor();
 		
 		super.attacks.add(Fire_Bolt);
 		super.attacks.add(Lightning_Pierce);
+		super.attacks.add(Mage_Armor);
 	}
 	
 	public void Wonder_guard() {

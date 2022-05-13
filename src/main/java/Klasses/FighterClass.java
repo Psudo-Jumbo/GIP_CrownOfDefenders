@@ -7,6 +7,7 @@ public class FighterClass {
 
 	String classname;
 	String Nickname;
+	int id;
 	int hp_max;
 	public int hp_current;
 	double Strength;
@@ -16,6 +17,7 @@ public class FighterClass {
 	double Physical_Defence;
 	double Magical_Defence;
 	double all_Defence;
+	String image;
 	ArrayList<Skills.Attack> attacks = new ArrayList<Attack>();
 	
 	ArrayList<Skills.Attack> Skill = new ArrayList<Attack>();
@@ -26,31 +28,7 @@ public class FighterClass {
 	boolean skillused = false;
 	
 	
-	public ArrayList<Attack> getSkill(){
-		return Skill;
-	}
-	public ArrayList<Attack> getAttacks() {
-		return attacks;
-	}
-	public String GetSkillType() {
-		return skilltype;
-	}
 	
-	public double GetStrength() {
-		return this.Strength;
-	}
-	public double GetSpeed() {
-		return this.Speed;
-	}
-	public double GetVitality() {
-		return this.Vitality;
-	}
-	public double GetMagic() {
-		return this.Magic;
-	}
-	public boolean Getskillused() {
-		return this.skillused;
-	}
 	
 	public void PrintInfo() {
 		System.out.println("---");
@@ -71,18 +49,7 @@ public class FighterClass {
 		System.out.println("Magic: " + this.Magic);
 	}
 	
-	public String getclassname() {
-		return this.classname;
-	}
 	
-	public String getSkillname() {
-		return Skillname;
-	}
-
-
-	public String getSkill_Discription() {
-		return Skill_Discription;
-	}
 	
 	public void checkattack(String usedattack, FighterClass target) {
 		
@@ -180,4 +147,114 @@ public class FighterClass {
 			target.PrintAll();
 			System.out.println("---");
 		}
+	public String getClassname() {
+		return classname;
+	}
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
+	public String getNickname() {
+		return Nickname;
+	}
+	public void setNickname(String nickname) {
+		Nickname = nickname;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getHp_max() {
+		return hp_max;
+	}
+	public void setHp_max(int hp_max) {
+		this.hp_max = hp_max;
+	}
+	public int getHp_current() {
+		return hp_current;
+	}
+	public void setHp_current(int hp_current) {
+		this.hp_current = hp_current;
+	}
+	public double getStrength() {
+		return Strength;
+	}
+	public void setStrength(double strength) {
+		Strength = strength;
+	}
+	public double getSpeed() {
+		return Speed;
+	}
+	public void setSpeed(double speed) {
+		Speed = speed;
+	}
+	public double getVitality() {
+		return Vitality;
+	}
+	public void setVitality(double vitality) {
+		Vitality = vitality;
+	}
+	public double getMagic() {
+		return Magic;
+	}
+	public void setMagic(double magic) {
+		Magic = magic;
+	}
+	public double getPhysical_Defence() {
+		return Physical_Defence;
+	}
+	public void setPhysical_Defence(double physical_Defence) {
+		Physical_Defence = physical_Defence;
+	}
+	public double getMagical_Defence() {
+		return Magical_Defence;
+	}
+	public void setMagical_Defence(double magical_Defence) {
+		Magical_Defence = magical_Defence;
+	}
+	public double getAll_Defence() {
+		return all_Defence;
+	}
+	public void setAll_Defence(double all_Defence) {
+		this.all_Defence = all_Defence;
+	}
+	public ArrayList<Skills.Attack> getAttacks() {
+		return attacks;
+	}
+	public void setAttacks(ArrayList<Skills.Attack> attacks) {
+		this.attacks = attacks;
+	}
+	public ArrayList<Skills.Attack> getSkill() {
+		return Skill;
+	}
+	public void setSkill(ArrayList<Skills.Attack> skill) {
+		Skill = skill;
+	}
+	public String getSkillname() {
+		return Skillname;
+	}
+	public void setSkillname(String skillname) {
+		Skillname = skillname;
+	}
+	public String getSkilltype() {
+		return skilltype;
+	}
+	public void setSkilltype(String skilltype) {
+		this.skilltype = skilltype;
+	}
+	public String getSkill_Discription() {
+		return Skill_Discription;
+	}
+	public void setSkill_Discription(String skill_Discription) {
+		Skill_Discription = skill_Discription;
+	}
+	public boolean getskillused() {
+		return skillused;
+	}
+	public void setSkillused(boolean skillused) {
+		this.skillused = skillused;
+	}
+	
+	
 	}	

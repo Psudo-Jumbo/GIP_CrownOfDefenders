@@ -21,7 +21,7 @@ public class General {
 	
 	public ArrayList filloutclasses () {
 		ArrayList<FighterClass> classes = new ArrayList<FighterClass>();
-		FighterClass Fighter1 = new Fighter("Figter1");
+		FighterClass Fighter1 = new Fighter("Fighter1");
 		classes.add(Fighter1);
 		FighterClass Knight1 = new Knight("Knight1");
 		classes.add(Knight1);
@@ -75,7 +75,7 @@ public class General {
 	public void CharacterChoice2(String player, ArrayList<FighterClass> classes) {
 		System.out.println(player1 + " choose class"); //player 1 choosing their class
 		for (FighterClass x: classes) {
-			System.out.println(x.getclassname());
+			System.out.println(x.getClassname());
 		}
 		String p1class_choice = scan.nextLine();
 		chooseClass(p1class_choice, player1);
@@ -84,10 +84,10 @@ public class General {
 	public void combatstart (String player1, String player2) {
 		boolean onefirst;
 		System.out.println("Deciding Fastest");
-		if(players.get(player1).GetSpeed()>players.get(player2).GetSpeed()) {
+		if(players.get(player1).getSpeed()>players.get(player2).getSpeed()) {
 			onefirst = true;
 			System.out.println(player1 + " goes first");
-		} else if((players.get(player1).GetSpeed() < players.get(player2).GetSpeed())) {
+		} else if((players.get(player1).getSpeed() < players.get(player2).getSpeed())) {
 			onefirst = false;
 			System.out.println(player2 + " goes first");
 		} else {
@@ -165,16 +165,16 @@ public class General {
 	
 	public void skillround(String attacker, String target) {
 		
-			if (players.get(attacker).GetSkillType()=="passive") {
+			if (players.get(attacker).getSkilltype()=="passive") {
 				System.out.println(players.get(attacker).getSkill_Discription());
 				combatmenu(attacker, target);
 			}
-			else if (players.get(attacker).GetSkillType()=="active") {
-				if (players.get(attacker).Getskillused() == true) {
+			else if (players.get(attacker).getSkilltype()=="active") {
+				if (players.get(attacker).getskillused() == true) {
 					System.out.println("---");
 					System.out.println("Skill has already been used");
 					combatmenu(attacker, target);
-				} else if (players.get(attacker).Getskillused() == false) {
+				} else if (players.get(attacker).getskillused() == false) {
 					ArrayList<Attack> Skill = players.get(attacker).getSkill();
 					for (Attack x : Skill) {
 					players.get(attacker).useAttack(x, players.get(target));
@@ -226,4 +226,97 @@ public class General {
 			players.put(choosingplayer, fighter);
 		}
 	}
+	
+	public ArrayList<FighterClass> combatroundget(FighterClass Attacker, FighterClass Target, Attack attack){
+		ArrayList<FighterClass> roundgroup = new ArrayList<FighterClass>();
+		
+
+		
+		return roundgroup;
+	}
+	
+	public ArrayList<FighterClass> useAttack(FighterClass Attacker, FighterClass target, Attack attack) {
+		
+		ArrayList<FighterClass> roundgroup = new ArrayList<FighterClass>();
+		
+		if(attack.getAttackType().contains("Damage")) {
+			int succeshits = 0;
+			
+			for(int a = 0; a<attack.gethits(); a++) {
+				if(attack.getDamageType()== "Physical") {
+					double hit = Math.random()*100;
+					double damage = (int)(((attack.getPower()*((Attacker.getStrength()*0.01)+1)))/2);
+					if ((int)hit <= attack.getCritrate()) {
+						damage = damage*2;
+						System.out.println("CRITICAL!");
+					}	
+					damage = (damage*(1-(target.getAll_Defence())+(target.getPhysical_Defence())));
+				
+					if (hit < attack.getAccuracy()-(target.getSpeed()*0.1)){
+						target.hp_current -= (int)damage;
+//						System.out.println(target.getNickname() + " has taken " + (int)damage + " damage from " + this.Nickname + "!");
+						succeshits += 1;
+					}
+				
+					else {
+//						System.out.println(this.Nickname + " missed!");
+					}
+					} else if(attack.getDamageType()== "Magic") {
+						double hit = Math.random()*100;
+						double damage = (int)(((attack.getPower()*((Attacker.getMagic()*0.01)+1)))/2);
+						if ((int)hit <= attack.getCritrate()) {
+							damage = damage*2;
+							System.out.println("CRITICAL!");
+						}
+						damage = (damage*(1-(target.getAll_Defence())+(target.getMagical_Defence())));
+				
+						if (hit < attack.getAccuracy()-(target.getSpeed()*0.2)){
+							target.hp_current -= (int)damage;
+//							System.out.println(target.Nickname + " has taken " + (int)damage + " damage from " + this.Nickname + "!");
+							succeshits += 1;
+						}
+				
+						else {
+//							System.out.println(this.Nickname + " missed!");
+						}	
+					}
+				}
+			System.out.println("---");
+			if( attack.getMultihit() == true) {
+//				System.out.println(this.Nickname + " hit " + succeshits + " times!");
+				System.out.println("---");
+			}
+			} else if(attack.getAttackType().contains("Buff")) {
+				if(attack.getStatboosttype().contains("Strength")) {
+//					System.out.println(Attacker.getNickname() + " increased their strength");
+					Attacker.setStrength(Attacker.getStrength()*((attack.getStatboost()/100)+1));
+				} else if (attack.getStatboosttype().contains("Speed")) {
+					Attacker.setSpeed(Attacker.getSpeed()*((attack.getStatboost()/100)+1));
+//					System.out.println(this.Nickname + " increased their speed");
+				} else if (attack.getStatboosttype().contains("Magic_D")) {
+					Attacker.setMagical_Defence(Attacker.getMagical_Defence()*((attack.getStatboost()/100)+1));
+//					System.out.println(this.Nickname + " increased their magic defence");
+				}else if (attack.getStatboosttype().contains("Magic")) {
+					Attacker.setMagic(Attacker.getMagic()*((attack.getStatboost()/100)+1));
+//					System.out.println(this.Nickname + " increased their magic");
+				}  else if (attack.getStatboosttype().contains("Physical_D")) {
+					Attacker.setPhysical_Defence(Attacker.getPhysical_Defence()*((attack.getStatboost()/100)+1));
+//					System.out.println(this.Nickname + " increased their Physical defence");
+				}
+				else {
+					System.out.println("-!-");
+					System.out.println("Something went wrong during Stat boost");
+					System.out.println("-!-");
+				}
+			}
+			
+			
+//				target.PrintAll();
+				System.out.println("---");
+				
+				roundgroup.add(Attacker);
+				roundgroup.add(target);
+				
+				return roundgroup;
+			}
 }

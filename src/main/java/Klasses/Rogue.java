@@ -5,6 +5,7 @@ import Skills.*;
 public class Rogue extends FighterClass{
 	
 	public Rogue(String nickname) {
+		super.id = 4;
 		super.classname = "Rogue";
 		super.Nickname = nickname;
 		super.Strength = 50;

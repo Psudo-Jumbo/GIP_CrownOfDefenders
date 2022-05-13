@@ -5,6 +5,7 @@ import Skills.*;
 public class Fighter extends FighterClass{
 
 	public Fighter(String nickname) {
+		super.id = 1;
 		super.classname = "Fighter";
 		super.Skillname = "Battle born";
 		super.skilltype = "passive";
@@ -18,6 +19,7 @@ public class Fighter extends FighterClass{
 		super.Magic = 50;
 		super.hp_max = ((int)this.Vitality*2);
 		super.hp_current = ((int)this.Vitality*2);
+		super.image = "Fighter.png";
 		
 		Attack Horizontal_Slash = new Horizontal_Slash();
 		Attack Fire_Bolt = new Fire_Bolt();

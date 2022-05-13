@@ -5,6 +5,7 @@ import Skills.*;
 public class Knight extends FighterClass{
 	
 	public Knight(String nickname) {
+		super.id = 3;
 		super.classname = "Knight";
 		super.Physical_Defence += 0.2;
 		super.Nickname = nickname;
@@ -14,6 +15,7 @@ public class Knight extends FighterClass{
 		super.Magic = 10;
 		super.hp_max = ((int)this.Vitality*2);
 		super.hp_current = ((int)this.Vitality*2);
+		super.image = "/images/Knight.webp";
 		
 		super.Skillname = "Fullplate";
 		super.skilltype = "passive";

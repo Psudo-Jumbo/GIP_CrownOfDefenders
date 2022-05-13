@@ -5,6 +5,7 @@ import Skills.*;
 public class HeavySwordsman extends FighterClass{
 
 	public HeavySwordsman(String nickname) {
+	super.id = 2;
 	super.classname = "Heavy Swordsman";
 	super.Nickname = nickname;
 	super.Strength = 90;
@@ -12,7 +13,8 @@ public class HeavySwordsman extends FighterClass{
 	super.Vitality = 60;
 	super.Magic = 10;
 	super.hp_max = ((int)this.Vitality*2);
-	super.hp_current = ((int)this.Vitality*2);	
+	super.hp_current = ((int)this.Vitality*2);
+	super.image = "/images/HeavySwordsman.webp";
 	
 	super.Skillname = "Full Swing";
 	super.skilltype = "active";
