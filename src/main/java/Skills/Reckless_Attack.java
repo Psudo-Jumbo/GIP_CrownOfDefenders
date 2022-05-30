@@ -4,7 +4,7 @@ public class Reckless_Attack extends Attack{
 
 	public Reckless_Attack(){
 		super.name = "Reckless Attack";
-		super.accuracy = 70;
+		super.accuracy = 75;
 		super.power = 45;
 		super.DamageType = "Physical";
 		super.AttackType = "Damage";

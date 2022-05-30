@@ -2,8 +2,64 @@
 
 #body{
 /* 	background-image: url("backgroundarena.jpg"); */
-/* 	background-size: cover; */
-background-color: black;
+/* 	background-size: contain; */
+/* background-color: black; */
+
+background: url("backgroundarena.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#infochar1{
+	display: none;
+}
+#infochar2{
+	display: none;
+}
+
+#textflex{
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	height: 30%;
+	width: 100%;
+}
+
+#textbox{
+	position: relative;
+	background-color: black;
+	width: 50%;
+	height: 100;
+}
+
+#logo{
+	object-fit: contain;
+	width: 90%;
+}
+
+#startflexcontain{
+	display: flex;
+	justify-content: center;
+}
+
+.startscreen{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+	width: 90%;
+	height: 100%;
+}
+
+#enterbutton{
+	position: relative;
+	width: 30%;
+	height: 40px;
+	font-family: fantasy;
+	font-size: 30px;
+	
 }
 
 #Player1text{
@@ -20,16 +76,23 @@ background-color: black;
 	font-family: fantasy;
 }
 
+#buttonflex{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
 #StartButton{
 	position:relative;
-	height: 5%;
-	width: 100%;
+	height: 10%;
+	width: 50%;
 	display: none;
 }
 
 #StartFlexbox{
 	position: relative;
 	height: 100%;
+	display: none;
 }
 
 .choiselist{
@@ -80,7 +143,7 @@ background-color: black;
 	align-items: center;
 /* 	background-color: rgb(122, 122, 122); */
 	
-	background-image: url("backgroundarena.jpg");
+/* 	background-image: url("backgroundarena.jpg"); */
 	background-size: cover;
 }
 
@@ -152,7 +215,7 @@ background-color: black;
 }
 
 .player-actions-style{
-	background-color: white;
+/* 	background-color: white; */
 	width: 25%;
 }
 
@@ -185,9 +248,9 @@ background-color: black;
 
 .AttackInfoBox{
 	display: flex;
-	flex-direction: column;
-	width: 100%;
-	margin: 5%;
+	justify-content: center;
+/* 	flex-direction: column; */
+	width: 95%;
 }
 
 #Attack1AccPow{
@@ -250,21 +313,62 @@ background-color: black;
 }
 
 #combat1image{
-	
+	animation-name: animationp1;
+	animation-duration: infinite ;
+}
+
+@keyframes animationp1{
+	0%{left:0%;}
+	100%{left:1%;}
 }
 
 #combat2image{
-	
+	animation-name: animationp2;
+	animation-duration: infinite ;
+}
+
+@keyframes animationp2{
+	0%		{left:0%;}
+	100%	{left:1%;}
 }
 
 .combatpic{
-	height: 50%;
+	height: 55%;
+/* 	width: 50%; */
 	top: 90%
 }
 
+.combatpicflex{
+	display: flex;
+	justify-content: center;
+}
+
 #Endscreen{
+	display: none;
 	position: relative;
 	width: 100%;
 	height: 100%;
 	text-align: center;
+}
+
+#endstats{
+	background-color: rgb(168, 168, 168)
+	
+}
+
+#selectlist1{
+	background-color: rgb(51, 153, 255);
+}
+
+#selectlist2{
+	background-color: rgb(230, 46, 0);
+}
+
+#winpic{
+	size: 50%;
+}
+
+#Victory{
+	font-size: 35px;
+	color: rgb(255, 204, 0)
 }

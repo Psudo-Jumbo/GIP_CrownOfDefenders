@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="ISO-8859-1">
 <title>Crown of Defenders</title>
@@ -10,21 +11,41 @@
 </head>
 <body id="body">
 
+<audio id="battlemusic">
+  <source src="Combat.mp3" type="audio/mpeg">
+</audio>
+<audio id="introswordsound">
+	<source src="Sword Draw Sound Effect.mp3" type="audio/mpeg">
+</audio>
+<audio id="selectsound">
+	<source src="Game Menu Select Sound Effect.mp3" type="audio/mpeg">
+</audio>
+
 <div id="app">
+
+	<div id="startflexcontain">
+		<div class="startscreen">
+			<img alt="" src="CrownofDefenderslogo.png" id="logo" @click="Entergame()">
+<!--	 		<button id="enterbutton" @click:="Entergame()">Start</button> -->
+		</div>
+	</div>
+	
+
 	<div class="flex-container-super" id="StartFlexbox">
 	
 	<div class="flex-container">
 	<p class="p1" id="Player1text">Player 1:</p>
   	<input v-model="P1Name" class="p1">
-  	<p class="p1">{{ P1Name }}</p>
+<!--   	<p class="p1">{{ P1Name }}</p> -->
 	
 	<ul class="p1">
 	
-	<div class="characterlist">
+	<div class="characterlist" >
 	<Button
 	v-for="item in Characters"
 	v-on:click="SetPrevieuwC1(item)"
 	class="choiselist w3-green"
+	id="selectlist1"
 	>{{ item.classname }}</li>
 	</Button>
 	</div>
@@ -33,6 +54,7 @@
 	
 	
 	<div class="p1">
+		<div class="p1">{{"Name: " + P1Name }}</div>
 		<div>{{ "class: " + PrevieuwCName1.classname }}</div>
 		<div>{{ "HP: " + PrevieuwCName1.hp_max }}</div>
 		<div>{{ "Skill: " + PrevieuwCName1.skillname}}</div>
@@ -49,15 +71,16 @@
 	<div class="flex-container">
 	<p class="p2" id="Player2text">Player 2:</p>
   	<input v-model="P2Name" class="p2">
-  	<p class="p2">{{ P2Name }}</p>
+<!--   	<p class="p2">{{ P2Name }}</p> -->
 	
 	<ul class="p2">
 	
-	<div class="characterlist">
+	<div class="characterlist" >
 	<button
 	v-for="item in Characters"
 	v-on:click="SetPrevieuwC2(item)"
 	class="choiselist"
+	id="selectlist2"
 	>{{ item.classname }}</li>
 	</button>
 	</div>
@@ -65,6 +88,7 @@
 	
 	
 	<div class="p2">
+		<div class="p2">{{"Name: " + P2Name }}</div>
 		<div>{{ "class: " + PrevieuwCName2.classname }}</div>
 		<div>{{ "HP: " + PrevieuwCName2.hp_max }}</div>
 		<div>{{ "Skill: " + PrevieuwCName2.skillname}}</div>
@@ -78,7 +102,10 @@
 	</div>
 	</div>
 	
-	<button v-on:click="StartCombat()" id="StartButton">Start</button>
+	<div id="buttonflex">
+		<button v-on:click="StartCombat()" id="StartButton">Start</button>
+	</div>
+	
 	</div>
 	
 	<div id="flex-container-super-combat" style="display: none;">
@@ -86,77 +113,103 @@
 			<div class="player-actions-style" id="flex-container-actions-1">
 				<div id="actions1all">
 					<Button class="HudButton HudButtons1" @click="GetAttacks1()">Attack</Button>
-					<Button class="HudButton HudButtons1">Info</Button>
+					<Button class="HudButton HudButtons1" @click="showinfo1()">Info</Button>
 					<div class="AttackList" id="P1AttackList">
 						<Button class="P1Attack Attack" id="P1Attack1" @click="P1SetAttack">{{ Char1Attack1.name }}</Button>
 						<Button class="P1Attack Attack" id="P1Attack2" @click="P1SetAttack">{{ Char1Attack2.name }}</Button>
 						<Button class="P1Attack Attack" id="P1Attack3" @click="P1SetAttack">{{ Char1Attack3.name }}</Button>
 						<button class="Button P1Attack Attack" id="attackbackbutton1" @click="P1BackButton()">Back</button>
 					</div>
+					<Button class="HudButton HudButtons1" id="selectAction1" @click="LockIn1()">Lock In</button>
 				</div>
-				<Button class="HudButton HudButtons1" id="selectAction1" @click="LockIn1()">Lock In</button>
+				
 			</div>
 			
 			<div class="empty">
 			<div class="AttackInfoBox" id="AttackInfoChar1">
-				<div id="PrevieuwAttackName1">{{ Char1AttackPrevieuw.name }}</div>
-				<div id="Attack1AccPow">
-					<div id="PrevieuwAttackAccuracy1">Accuracy: {{ Char1AttackPrevieuw.accuracy }}</div>
-					<div id="PrevieuwAttackPower1">Power: {{ Char1AttackPrevieuw.power }}</div>
+				<div>
+					<div id="PrevieuwAttackName1">{{ Char1AttackPrevieuw.name }}</div>
+					<div id="Attack1AccPow">
+						<div id="PrevieuwAttackAccuracy1">Accuracy: {{ Char1AttackPrevieuw.accuracy }}</div>
+						<div id="PrevieuwAttackPower1">Power: {{ Char1AttackPrevieuw.power }}</div>
+					</div>
+					<div id="Attack1Effect"> [ {{ Char1AttackPrevieuw.effect }} ] </div>
 				</div>
-				<div id="Attack1Effect"> [ {{ Char1AttackPrevieuw.effect }} ] </div>
 			</div>
+				<div id="infochar1">
+					<div>{{ "class: " + PrevieuwCName1.classname }}</div>
+					<div>{{ P1hpcurrent }} / {{ PrevieuwCName1.hp_max }}</div>
+					<div>{{ "Skill: " + PrevieuwCName1.skillname}}</div>
+					<div>{{ "Skilltype: " + PrevieuwCName1.skilltype}}</div>
+					<div>{{ "[ " +PrevieuwCName1.skill_Discription+" ] " }}</div>
+				</div>
 			</div>
 			
 			
 			<div class="empty">
 			<div class="AttackInfoBox" id="AttackInfoChar2">
-				<div id="PrevieuwAttackName2">{{ Char2AttackPrevieuw.name }}</div>
-				<div id="Attack2AccPow">
-					<div id="PrevieuwAttackAccuracy2">Accuracy: {{ Char2AttackPrevieuw.accuracy }}</div>
-					<div id="PrevieuwAttackPower2">Power: {{ Char2AttackPrevieuw.power }}</div>
-				</div>	
-				<div id="Attack2Effect"> [ {{ Char2AttackPrevieuw.effect }} ]</div>
+				<div>
+					<div id="PrevieuwAttackName2">{{ Char2AttackPrevieuw.name }}</div>
+					<div id="Attack2AccPow">
+						<div id="PrevieuwAttackAccuracy2">Accuracy: {{ Char2AttackPrevieuw.accuracy }}</div>
+						<div id="PrevieuwAttackPower2">Power: {{ Char2AttackPrevieuw.power }}</div>
+					</div>
+					<div id="Attack2Effect"> [ {{ Char2AttackPrevieuw.effect }} ] </div>
+				</div>
 			</div>
+				<div id="infochar2">
+					<div>{{ "class: " + PrevieuwCName2.classname }}</div>
+					<div>{{ P2hpcurrent }} / {{ PrevieuwCName1.hp_max }}</div>
+					<div>{{ "Skill: " + PrevieuwCName2.skillname}}</div>
+					<div>{{ "Skilltype: " + PrevieuwCName2.skilltype}}</div>
+					<div>{{ "[ " +PrevieuwCName2.skill_Discription+" ] " }}</div>
+				</div>
 			</div>
+			
 			
 			
 			<div class="player-actions-style" id="flex-container-actions-2">
 				<div id="actions2all">
 					<Button class="HudButton HudButtons2" @click="GetAttacks2()">Attack</Button>
-					<Button class="HudButton HudButtons2">Info</Button>
+					<Button class="HudButton HudButtons2" @click="showinfo2()">Info</Button>
 					<div class="AttackList" id="P2AttackList">
 						<Button class="P2Attack Attack" id="P2Attack1" @click="P2SetAttack">{{ Char2Attack1.name }}</Button>
 						<Button class="P2Attack Attack" id="P2Attack2" @click="P2SetAttack">{{ Char2Attack2.name }}</Button>
 						<Button class="P2Attack Attack" id="P2Attack3" @click="P2SetAttack">{{ Char2Attack3.name }}</Button>
 						<button class="Button P2Attack Attack" id="attackbackbutton2" @click="P2BackButton()">Back</button>
 					</div>
+					<Button class="HudButton HudButtons2" id="selectAction2" @click="LockIn2()">Lock In</button>
 				</div>
-				<Button class="HudButton HudButtons2" id="selectAction2" @click="LockIn2()">Lock In</button>
+				
 			</div>
 		</div>
 		
 		<div class="hpbarBox">
 			<div class="HpBar w3-padding" id="HpBarP1">
-				<div class="p1health">{{ PrevieuwCName1.hp_current }} / {{ PrevieuwCName1.hp_max }}</div>
+				<div class="p1health">{{ P1hpcurrent }} / {{ PrevieuwCName1.hp_max }}</div>
 			</div>
 			
-			<div><img src="" id="combat1image" class="combatpic"></div>
-			<div><img src="" id="combat2image" class="combatpic"></div>
+			<div class="combatpicflex"><img src="" id="combat1image" class="combatpic"></div>
+			<div class="combatpicflex"><img src="" id="combat2image" class="combatpic"></div>
 			
 			<div class="HpBar w3-padding" id="HpBarP2">
-				<div class="p2health">{{ PrevieuwCName2.hp_current }} / {{ PrevieuwCName2.hp_max }}</div>
+				<div class="p2health">{{ P2hpcurrent }} / {{ PrevieuwCName2.hp_max }}</div>
 			</div>
 		</div>
 		
-		<div id="textbox"></div>
+		<div id="textflex">
+			<div id="textbox"></div>
+		</div>
+		
 	</div>
 	
 	<div id="Endscreen">
 		<div id="Victory">Victorious</div>
+		<div class='empty'></div>
 		<div class="pwin">
+		<div id="endstats">
 			<div>{{ "class: " + Win.classname }}</div>
-			<div>{{ "HP: " + Win.hp_max }}</div>
+			<div>{{ "HP: " + Win.hp_current }} / {{ Win.hp_max }}</div>
 			<div>{{ "Skill: " + Win.skillname}}</div>
 			<div>{{ "Skilltype: " + Win.skilltype}}</div>
 			<div>{{ "[ " + Win.skill_Discription+" ] " }}</div>
@@ -164,8 +217,10 @@
 			<div>{{ "Speed: " + Win.speed}}</div>
 			<div>{{ "Vitality: " + Win.vitality}}</div>
 			<div>{{ "Magic: " + Win.magic}}</div>
-		<div> <img src="" id="winimage"> </div>
+		</div>
+		<div id="winpic"> <img src="" id="winimage"> </div>
 	</div>
+	<div class='empty'></div>
 	</div>
 	
 </div>
